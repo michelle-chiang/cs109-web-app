@@ -4,3 +4,7 @@ body {
 .container .jumbotron { 
 	border-radius:40px; 
 }
+
+.tab-content {
+	margin: 3rem;
+}

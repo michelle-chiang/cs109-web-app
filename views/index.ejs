@@ -6,19 +6,128 @@
 
     <!-- CSS -->
     <!-- load bootstrap and our own personal stylesheet -->
-    <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/superhero/bootstrap.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/simplex/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- <script src="navigation.js"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 </head>
 <body>
 
-<div class="container">
-    <div class="jumbotron">
-        <h1>This Is Heroku Awesome!</h1>
-        <p>This is the sample of a tutorial on <a href="https://scotch.io">scotch.io</a></p>
-        <a href="https://scotch.io/tutorials/" class="btn btn-primary btn-lg">View the Tutorial</a>
-    </div>
+<ul class="nav nav-tabs" id="my-tabs">
+  <li class="active"><a href="/" data-toggle="tab" aria-expanded="true">Introduction</a></li>
+  <li class=""><a href="/model" data-toggle="tab" aria-expanded="false">Model</a></li>
+  <li class=""><a href="/results" data-toggle="tab" aria-expanded="false">Results</a></li>
+</ul>
+<div id="intro-content" class="tab-content">
+  <h2>Problem Statement and Motivation</h2>
+  <h2>Introduction and Description of Data</h2>
+  <p>Music is such an important of our lives. It connects people and allows for the flourishing of creativity. Part of the enjoyment of music is being able to discover new music as well as share it with other people. Spotify seeks to do this through the development of its music recommendation system, a valuable asset in attracting more customers and recommending good music for its users. One of Spotify’s main functions is generating playlists, which it can then recommend to its users with the goal of providing them with collections of music they might enjoy.</p>
+  <p>Playlists are composed of a number of individual tracks, and Spotify has generated many of them already. To obtain the data we used for this project, we scraped data from Spotify’s web API, namely all of the Spotify-owned playlists and their features. In addition, we also scraped data for each individual track in each of these playlists. Then, in order to obtain an even richer set of data on which to build our model, we also scraped data regarding each of the artists and song albums connected to the songs we scraped. Our final Spotify dataset has the following features, with our model ideally predicting the ‘followers’ column (additional features scraped from the Million Song Dataset are listed at the end):</p>
+
+  <table class="table table-striped table-hover ">
+    <thead>
+      <tr>
+        <th>attribute</th>
+        <th>description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>followers</td>
+        <td>number of followers on Spotify</td>
+      </tr>
+      <tr>
+        <td>name</td>
+        <td>name of playlist</td>
+      </tr>
+      <tr>
+        <td>owner</td>
+        <td>owner of playlist (all are Spotify)</td>
+      </tr>
+      <tr>
+        <td>track_ids</td>
+        <td>list of Spotify ID’s of all tracks in playlist</td>
+      </tr>
+      <tr>
+        <td>num_tracks</td>
+        <td>number of tracks in playlist</td>
+      </tr>
+      <tr>
+        <td>avg_song_popularity</td>
+        <td>average popularity of component tracks (value  between 0 and 100, with 100 being the most popular)</td>
+      </tr>
+      <tr>
+        <td>avg_loudness</td>
+        <td>average loudness of component tracks (decibels)</td>
+      </tr>
+      <tr>
+        <td>avg_speechiness</td>
+        <td>average speechiness of component tracks (value  between 0.0 and 1.0, with 1.0 being the most speech-like); measures the  presence of spoken words in a track (values above 0.66 represent tracks that  are entirely speech, between 0.33 and 0.66 represents a mix of music and  speech, below 0.33 represents entirely music)</td>
+      </tr>
+      <tr>
+        <td>avg_acousticness</td>
+        <td>average confidence level for whether or not  component tracks are acoustic (value between 0.0 and 1.0, with 1.0 being the  highest confidence that track is acoustic)</td>
+      </tr>
+      <tr>
+        <td>avg_instrumentalness</td>
+        <td>average value of how instrumental, as opposed to  vocal, component tracks are(value between 0.0 and 1.0, with 1.0 being  entirely instrumental)</td>
+      </tr>
+      <tr>
+        <td>avg_liveness</td>
+        <td>average value for probability that component  tracks were performed live (value between 0.0 and 1.0, with 1.0 representing  high likelihood that a track was performed live)</td>
+      </tr>
+      <tr>
+        <td>avg_valence</td>
+        <td>average musical positiveness of component tracks  (value between 0.0 and 1.0, with 1.0 being the most positive); high valence  tracks sound more positive (e.g. happy, cheerful, euphoric) and low valence  sound more negative (e.g. sad, depressed, angry)</td>
+      </tr>
+      <tr>
+        <td>avg_num_artists</td>
+        <td>average number of artists that performed in  component tracks</td>
+      </tr>
+      <tr>
+        <td>avg_num_markets</td>
+        <td>average number of countries in which component  tracks can be played</td>
+      </tr>
+      <tr>
+        <td>majority_explicit</td>
+        <td>binary value indicating whether the majority of  component tracks contain explicit lyrics (1 = explicit, 0 = not explicit)</td>
+      </tr>
+      <tr>
+        <td>majoirty_mode</td>
+        <td>binary value indicating the modality of the majority of component tracks (1 = major, 0 = minor)</td>
+      </tr>
+      <tr>
+        <td>majority_album_type</td>
+        <td>type of album from which the majority of component tracks come from (album,  compilation, single, NaN)</td>
+      </tr>
+      <tr>
+        <td>avg_album_popularity</td>
+        <td>average popularity of albums on which component  tracks were released (value between 0.0 and 100.0, with 100.0 being the most popular)</td>
+      </tr>
+      <tr>
+        <td>avg_album_release_year</td>
+        <td>average release year of albums on which component tracks were released</td>
+      </tr>
+      <tr>
+        <td>avg_artist_popularity</td>
+        <td>average popularity of artists of component track (value between 0.0 and 100.0, with 100.0 being the most popular)</td>
+      </tr>
+      <tr>
+        <td>avg_artist_followers</td>
+        <td>average number of followers of artists of component tracks</td>
+      </tr>
+      <tr>
+        <td>majoirty_artist_genres</td>
+        <td>genre of majority of artists of component tracks</td>
+      </tr>
+    </tbody>
+  </table> 
 </div>
+
+
 
 </body>
 </html>

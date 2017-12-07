@@ -18,6 +18,14 @@ app.get('/', function(req, res) {
     res.render('index');
 });
 
+app.get('/model', function(req, res) {
+	res.render('model');
+})
+
+app.get('/results', function(req, res) {
+	res.render('results');
+})
+
 app.listen(port, function() {
     console.log('Our app is running on http://localhost:' + port);
 });
