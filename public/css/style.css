@@ -1,10 +1,30 @@
 body { 
 	padding-top:50px; 
 }
+
+img {
+	max-width: 100%;
+	display: block;
+	margin: auto;
+	padding: 30px 0 5px 0;
+}
+
+p {
+
+}
+
 .container .jumbotron { 
 	border-radius:40px; 
 }
 
 .tab-content {
 	margin: 3rem;
+}
+
+.EDA_container {
+	margin: 0 10rem;
+}
+
+.EDA_container p {
+	text-align: center;
 }
