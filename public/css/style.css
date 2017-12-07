@@ -1,5 +1,10 @@
 body { 
-	padding-top:50px; 
+	padding-top: 50px; 
+	font-size: 18px;
+}
+
+table { 
+	font-size: 14px;
 }
 
 img {
@@ -9,8 +14,12 @@ img {
 	padding: 30px 0 5px 0;
 }
 
-p {
+a {
+    color: #00CC66;
+}
 
+p {
+	font-size: 16px;
 }
 
 .container .jumbotron { 
