@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <header style="margin-top: -40px;">
+    <header style="margin-left: 25px;">
+    <header style="margin-right: 25px;">
+    <meta charset="UTF-8">
+    <title>CS109 Final Project</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/simplex/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <h1>CS109a Final Project: Spotify Playlist Analysis</h1>
+    <h2>Group 31: Michelle Chiang, David Seong, Emily Chen</h2>
+    <h2>December 7, 2017</h2>
+</head>
+<body>
+
+<ul class="nav nav-tabs" id="my-tabs">
+  <li class=""><a href="/" data-toggle="tab" aria-expanded="false">Introduction</a></li>
+  <li class="active"><a href="/EDA" data-toggle="tab">EDA</a></li>
+  <li class=""><a href="/model" data-toggle="tab" aria-expanded="false">Model</a></li>
+  <li class=""><a href="/results" data-toggle="tab" aria-expanded="false">Results</a></li>
+</ul>
+
+<h3>At First Glance: EDA for Spotify Features</h3>
+  <p>Code to produce EDA visualizations embedded in project jupyter notebook here: <a href="https://github.com/michelle-chiang/CS109-Final-Project/blob/master/FILES%20FOR%20SUBMISSION/cs109a_final_project_models.ipynb">cs109a_final_project_models.ipynb</a></p>
+  <div class="EDA_container">
+    <img src="assets/num_tracks.png" alt="Playlist popularity as a Function of Number of Tracks">
+    <p>We see that there is quite a spread over the number of tracks/songs per playlist. We see that a large number of playlists contain about 50 or so songs, though there is no clear trend between number of tracks in a playlist and its popularity. Note the presence of an outlier, corresponding to a playlist of about 50 songs but an extremely large number of followers.</p>
+    <img src="assets/explicit.png" alt="Mean Number of Followers by Song Explicitness">
+    <p>Here we compare the mean number of followers a playlist has, given the measure of its ‘majority_explicit’-ness (where a playlist is labeled “explicit” if the majority of its tracks are explicit). From the graph above, we hypothesize that explicit songs may be more popular, perhaps because explicit songs are likely more recent ones. This warrants further investigation.</p>
+    <img src="assets/mode.png" alt="Mean Number of Followers by Song Mode Measure">
+    <p>This visualization presents an interesting potential find. Comparing the ‘majority_mode’ of different playlists, where this value is obtained from assuming the value of the mode of the majority of songs in a playlist, it may be the case that songs in a minor key (mode = 0.0) on average generate a larger following that songs in a major key (mode = 0.1). This prompts further investigation to determine whether this difference in average number of followers is statistically significant.</p>
+    <img src="assets/album_type.png" alt="Mean Number of Followers by Album Type">
+    <p>Across different values for ‘majority_album_type’, where the album type of a playlist is the type of album/release method that the majority of the songs on a given playlist come from, we see pretty stark differences across values. It seems as if songs that are released as singles contribute the most to an increased number of playlist followers, then songs that are part of albums, then compilations. This seems promising, since songs that are released as singles usually generate a large buzz, as fans’ and listeners’ attentions are largely more focused on the release of a particular new single.</p>
+    <img src="assets/audio_features.png" alt="Visualization of Audio Features">
+    <p>Here we examine the different audio features of the component tracks of a playlist: ‘loudness’, ‘speechiness’, ‘acousticness’, ‘instrumentalness’, ‘liveness’, and ‘valence’. First, we notice that certain values of particular features are more common on the whole. The scatter plots show that the most playlists have have greater average ‘loudness’ (dB) values that are closer to 0, whereas ‘speechiness’, ‘valence’, and ‘liveness’ tend towards lower values. ‘acousticness’ and ‘valence’ have a much more even spread of values across the dataset. Second, there are no clear trends between any of these measures and the number of followers a playlist has. The graphs may hint the presence of louder songs, less speechy (or more vocal) songs, less instrumental (or more vocal), and less live (or likely studio-recorded) songs on a playlist contribute to an increased number of playlist followers.</p>
+    <img src="assets/audio_info.png" alt="Visualization of Component Tracks">
+    <p>We now turn our attention to general information of the component tracks of a playlist: ‘album_popularity’, ‘album_release_year’, ‘artist_poularity’, and ‘artist_number_of_followers’. Again, there are no clear trends between any of these measures and the number of followers a playlist has. The visualizations suggest that the presence of songs that come from more popular albums or are released by more popular artists on a playlist will generate a greater number of playlist followers. In addition, more recent songs may also contribute to increase playlist popularity. This warrants further investigation.</p>
+  </div>
+
+  <h3>At Second Glance: EDA for Additional Features</h3>
+  <div class="EDA_container">
+    <img src="assets/time_signature.png" alt="Mean Number of Followers by Time Signature">
+    <p>Here we compare the mean number of followers a playlist has, given the ‘time_signature’ of the majority of its component songs. From the graph above, a value of 4.0 for time signature (4 beats/measure, the most common time signature) seems to have the strongest positive relationship with mean number of playlist followers.</p>
+    <img src="assets/key.png" alt="Mean Number of Followers by Key">
+    <p>Here we compare the mean number of followers a playlist has, given the ‘key’ of the majority of its component songs. From the graph above, a value of 11.0 for the key of a song (key of B) seems to have a significantly greater mean number of playlist followers.</p>
+    <img src="assets/audio_features_additional.png">
+    <p>Additional information regarding the tracks is displayed above. In particular, visualizations for ‘danceability’, ‘energy’ and ‘duration’ are displayed above. We don’t see particular clear trends here, though we do see pretty clearly that the spread of average song duration of the songs in a playlist are more closely clustered together, as most songs are just a few minutes long. We see that a longer average song duration is likely correlated with fewer playlist followers. We will further develop our previous model to take into account these features in the hope of creating a slightly more robust model.</p>
+  </div>
+
+</body>
+</head>
+</html>

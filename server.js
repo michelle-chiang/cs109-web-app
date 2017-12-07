@@ -18,6 +18,10 @@ app.get('/', function(req, res) {
     res.render('index');
 });
 
+app.get('/EDA', function(req, res) {
+	res.render('EDA');
+})
+
 app.get('/model', function(req, res) {
 	res.render('model');
 })
